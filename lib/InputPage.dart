@@ -6,7 +6,14 @@ import 'reusable.dart';
 const BottomHeight = 80.0;
 const ColorSwatch = Color(0xFF1C1C2D);
 
-const activeColor = Color.fromARGB(255, 59, 61, 101);
+const maleInactiveColor = Color(0xFF1C1C2D);
+const femaleInactiveColor = Color(0xFF1C1C2D);
+const activeColor = Color.fromARGB(255, 109, 111, 146);
+
+enum Gender {
+  male,
+  female,
+}
 
 class InputPage extends StatefulWidget {
   @override
@@ -14,6 +21,10 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
+  Gender? g;
+  Color maleCardColor = maleInactiveColor;
+  Color femaleCardColor = femaleInactiveColor;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,24 +38,28 @@ class _InputPageState extends State<InputPage> {
           Row(
             children: [
               Expanded(
-                child: GestureDetector(
-                  onTap: () {
+                child: ReusableCard(
+                  onPress: () {
                     setState(() {
-                      activeColor;
+                      g = Gender.male;
                     });
                   },
-                  child: ReusableCard(
-                    colour: ColorSwatch,
-                    cardChild: CardData(
-                      photu: FontAwesomeIcons.mars,
-                      name: 'MALE',
-                    ),
+                  colour: g == Gender.male ? activeColor : maleInactiveColor,
+                  cardChild: CardData(
+                    photu: FontAwesomeIcons.mars,
+                    name: 'MALE',
                   ),
                 ),
               ),
               Expanded(
                 child: ReusableCard(
-                  colour: ColorSwatch,
+                  onPress: () {
+                    setState(() {
+                      g = Gender.female;
+                    });
+                  },
+                  colour:
+                      g == Gender.female ? activeColor : femaleInactiveColor,
                   cardChild: CardData(
                     photu: FontAwesomeIcons.venus,
                     name: 'FEMALE',
@@ -57,6 +72,7 @@ class _InputPageState extends State<InputPage> {
             children: [
               Expanded(
                 child: ReusableCard(
+                  onPress: () {},
                   colour: ColorSwatch,
                   cardChild: Column(
                     children: [],
@@ -69,6 +85,7 @@ class _InputPageState extends State<InputPage> {
             children: [
               Expanded(
                 child: ReusableCard(
+                  onPress: () {},
                   colour: ColorSwatch,
                   cardChild: Column(
                     children: [],
@@ -77,6 +94,7 @@ class _InputPageState extends State<InputPage> {
               ),
               Expanded(
                 child: ReusableCard(
+                  onPress: () {},
                   colour: ColorSwatch,
                   cardChild: Column(
                     children: [],
