@@ -14,16 +14,6 @@ class CardData extends StatelessWidget {
           size: 110.0,
           color: Color.fromARGB(255, 240, 240, 240),
         ),
-        SizedBox(
-          height: 35,
-        ),
-        Text(
-          name,
-          style: TextStyle(
-            fontSize: 18.0,
-            color: Color(0xFF8D8E98),
-          ),
-        ),
       ],
     );
   }

@@ -1,14 +1,8 @@
+import 'package:bmi_cal/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'IconData.dart';
 import 'reusable.dart';
-
-const BottomHeight = 80.0;
-const ColorSwatch = Color(0xFF1C1C2D);
-
-const maleInactiveColor = Color(0xFF1C1C2D);
-const femaleInactiveColor = Color(0xFF1C1C2D);
-const activeColor = Color.fromARGB(255, 109, 111, 146);
 
 enum Gender {
   male,
@@ -24,7 +18,7 @@ class _InputPageState extends State<InputPage> {
   Gender? g;
   Color maleCardColor = maleInactiveColor;
   Color femaleCardColor = femaleInactiveColor;
-
+  int height = 180;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,9 +67,39 @@ class _InputPageState extends State<InputPage> {
               Expanded(
                 child: ReusableCard(
                   onPress: () {},
-                  colour: ColorSwatch,
+                  colour: colorswatch,
                   cardChild: Column(
-                    children: [],
+                    children: [
+                      Text(
+                        "HEIGHT",
+                        style: labelTextStyle,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.baseline,
+                        textBaseline: TextBaseline.alphabetic,
+                        children: [
+                          Text(
+                            height.toString(),
+                            style: numberTstykle,
+                          ),
+                          Text(
+                            "cm",
+                            style: labelTextStyle,
+                          )
+                        ],
+                      ),
+                      Slider(
+                        value: height.toDouble(),
+                        min: 120.0,
+                        max: 220.0,
+                        onChanged: (double newValue) {
+                          setState(() {
+                            height = newValue.toInt();
+                          });
+                        },
+                      )
+                    ],
                   ),
                 ),
               ),
@@ -86,7 +110,7 @@ class _InputPageState extends State<InputPage> {
               Expanded(
                 child: ReusableCard(
                   onPress: () {},
-                  colour: ColorSwatch,
+                  colour: colorswatch,
                   cardChild: Column(
                     children: [],
                   ),
@@ -95,7 +119,7 @@ class _InputPageState extends State<InputPage> {
               Expanded(
                 child: ReusableCard(
                   onPress: () {},
-                  colour: ColorSwatch,
+                  colour: colorswatch,
                   cardChild: Column(
                     children: [],
                   ),
